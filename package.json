@@ -1,7 +1,7 @@
 {
   "name": "create-custom-lightbox",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://AleksandrMarkitan.github.io/create-custom-lightbox/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
