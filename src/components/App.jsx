@@ -20,6 +20,7 @@ export const App = () => {
   const [notFound, setNotFound] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [imageInModal, setImageInModal] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(null);
   const [imagesQuantity, setImagesQuantity] = useState(null);
 
   useEffect(() => {
@@ -64,9 +65,10 @@ export const App = () => {
     setPage(prevState => prevState + 1);
   };
 
-  const openModal = e => {
-    const imageInModal = e.target.dataset.url;
+  const openModal = index => {
+    const imageInModal = images[index].largeImageURL;
     setImageInModal(imageInModal);
+    setCurrentImageIndex(index);
   };
 
   const closeModal = () => {
@@ -86,7 +88,13 @@ export const App = () => {
       {page < imagesQuantity / imagesPerPage && !isLoading && !error && (
         <ButtonLoader nextPageHandler={nextPageHandler} />
       )}
-      {imageInModal && <Modal url={imageInModal} closeModal={closeModal} />}
+      {imageInModal && (
+        <Modal
+          closeModal={closeModal}
+          images={images}
+          currentImageIndex={currentImageIndex}
+        />
+      )}
     </>
   );
 };
